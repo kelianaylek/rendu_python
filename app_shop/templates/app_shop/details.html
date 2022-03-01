@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="main">
+    {# Load the tag library #}
+    {% load bootstrap5 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <div class="text-center">
+        <img src="{{data.image}}" alt="" class="w-25 p-2">
+        <p>{{ data.description }} </p>
+        <br>
+        <p>Prix : {{ data.price }}$</p>
+        <br>
+
+        <p>Quantité : {{ data.quantity }} </p>
+
+        <br>
+
+
+        <form action="/shop/buy/{{data.id}}" method="POST">
+            <!-- Security token by Django -->
+            {% csrf_token %}
+
+            <label for="pet-select">Achat : </label>
+
+            <!-- form as paragraph -->
+            <select name="quantity" id="pet-select">
+                <option disabled value="">--Please choose an option--</option>
+                {% for x in range %}
+                <option value="{{x}}">{{x}}</option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="Acheter">
+        </form>
+
+        <br>
+
+        <a href="/shop">Back</a>
+
+    </div>
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

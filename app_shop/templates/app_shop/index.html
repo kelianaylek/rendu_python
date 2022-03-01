@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="main">
+    {# Load the tag library #}
+    {% load bootstrap5 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <h1 class="text-center">Produits</h1>
+
+    <div class="d-flex flex-wrap row p-4">
+        {% for data in dataset %}
+
+        {% if data.quantity > 0 %}
+            <div class="col-md-3 text-center">
+                <img src="{{data.image}}" alt="" class="w-100 h-50">
+                {{ data.price }}$ - {{ data.quantity }} items
+                <br>
+                <a href="shop/{{ data.id }}">Voir</a>
+            </div>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+
+
+</div></body>
+</html>
